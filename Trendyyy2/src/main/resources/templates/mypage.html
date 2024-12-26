@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>마이페이지</title>
+</head>
+<body>
+    <h1>마이페이지</h1>
+    <p>이름: <span th:text="${user.name}"></span></p>
+    <p>이메일: <span th:text="${user.email}"></span></p>
+    <img th:src="${user.profileImage}" alt="프로필 이미지">
+</body>
+</html>
