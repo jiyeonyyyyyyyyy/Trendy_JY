@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+    <!-- Header 부분을 Thymeleaf로 변경 -->
+    <!-- <div th:replace="~{::header}"></div> -->
+
+    <div align="center">
+        <h1>로그인</h1>
+        <table>
+            <tr>
+                <td>
+                    <!-- 기본 로그인 폼 -->
+                    <form action="loginProc" method="post" id="f">
+                        <input type="text" name="id" placeholder="아이디" id="id"><br>
+                        <input type="password" name="pw" placeholder="비밀번호" id="pw"><br>
+                        <input type="button" value="로그인" onclick="loginCheck()">
+                        <input type="button" value="취소" onclick="location.href='login'"><br>
+                    </form>
+                </td>
+            </tr>
+            
+            <!-- 소셜 로그인 버튼 -->
+            <tr>
+                <td>
+                    <!-- 카카오 로그인 버튼 -->
+					<a href="https://kauth.kakao.com/oauth/authorize?response_type=code
+									&client_id=5f437335c73db193eccb36fa22153089
+									&redirect_uri=http://localhost:8080/login/oauth2/code/kakao">
+										<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" />
+									</a>
+                    <!-- 네이버 로그인 버튼 -->
+                    <a th:href="@{/oauth2/authorization/naver}">
+                        <img src="/images/naver_login_button.png" alt="네이버 로그인">
+                    </a>
+                </td>
+            </tr>
+
+            <!-- 로그인 상태 표시 -->
+            <tr>
+                <td>
+                    <div id="login-status">
+                        <p th:if="${#authentication.name != 'anonymous'}">
+                            로그인 상태: <span th:text="${#authentication.name}">사용자</span>
+                        </p>
+                        <p th:if="${#authentication.name == 'anonymous'}">
+                            로그인 상태: 로그인 전
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Footer 부분을 Thymeleaf로 변경 -->
+    <!-- <div th:replace="~{::footer}"></div> -->
+</body>
+</html>
